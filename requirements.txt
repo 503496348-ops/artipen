@@ -1,0 +1,3 @@
+# ArtiPen dependencies
+# No external dependencies - pure Python
+
