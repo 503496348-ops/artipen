@@ -2,7 +2,7 @@
 authors:
   - AtomCollide-智械工坊团队
 name: artipen
-description: "妙笔生花 ArtiPen — 多平台文章编排引擎。输入Markdown/纯文本，自动完成：内容分析→平台适配排版→配图生成→发布。支持公众号、小红书、知乎、掘金。"
+description: "多平台内容编排引擎。公众号HTML+小红书卡片+知乎/掘金Markdown+AI味检测(33类模式+5维度评分)。当需要撰写公众号文章、生成小红书内容、检测AI味时使用。"
 version: "1.0"
 triggers:
   - 公众号排版
@@ -18,6 +18,8 @@ authors:
   - AtomCollide-智械工坊团队
 
 # 妙笔生花 · ArtiPen
+
+> 📖 详细文档见 `references/` 目录
 
 > 多平台文章编排引擎。一篇文章 → 四个平台最优格式。
 
@@ -135,3 +137,12 @@ title / keypoints / data / quote / comparison / timeline / list / summary
 
 ### 信息图风格（22种）
 minimal / magazine / tech / handdrawn / corporate / playful / vintage / neon / pastel / dark / nature / luxury / academic / bold / retro / futuristic / watercolor / geometric / organic / monochrome / gradient / mosaic
+
+## 工作流
+
+使用此技能时，按以下步骤执行：
+- [ ] 1. 确认用户需求和使用场景
+- [ ] 2. 加载相关代码和配置
+- [ ] 3. 执行核心功能
+- [ ] 4. 验证输出结果
+- [ ] 5. 反馈给用户
