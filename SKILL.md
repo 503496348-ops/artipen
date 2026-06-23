@@ -146,3 +146,14 @@ minimal / magazine / tech / handdrawn / corporate / playful / vintage / neon / p
 - [ ] 3. 执行核心功能
 - [ ] 4. 验证输出结果
 - [ ] 5. 反馈给用户
+
+
+---
+
+## 技术架构
+
+- **生成引擎**: 多模型调度（文生图/文生文），支持SDXL/Flux等后端
+- **风格系统**: 20+预设风格模板，自定义风格训练
+- **质量控制**: 生成→评分→筛选→重试循环
+- **API服务**: FastAPI RESTful接口，SQLite持久化
+- **批处理**: 并行渲染+自动命名归档
