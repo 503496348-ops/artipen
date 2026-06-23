@@ -3,7 +3,7 @@ authors:
   - AtomCollide-智械工坊团队
 name: artipen
 description: "多平台内容编排引擎。公众号HTML+小红书卡片+知乎/掘金Markdown+AI味检测(33类模式+5维度评分)。当需要撰写公众号文章、生成小红书内容、检测AI味时使用。"
-version: "1.0"
+version: 1.1.0
 triggers:
   - 公众号排版
   - 小红书图片
