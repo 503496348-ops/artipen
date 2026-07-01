@@ -32,6 +32,9 @@ def main():
   %(prog)s article.md --platform xhs --xhs-style tech
   %(prog)s article.md --check-ai-flavor
   %(prog)s article.md --analyze
+  %(prog)s article.md --topic-brief --topic-category ai-models
+  %(prog)s article.md --longform-plan
+  %(prog)s article.md --research-brief --subject "目标产品"
         """
     )
 
@@ -44,6 +47,13 @@ def main():
     parser.add_argument("--xhs-palette", default="neutral", help="小红书配色（warm/cool/neutral）")
     parser.add_argument("--check-ai-flavor", action="store_true", help="检测AI味")
     parser.add_argument("--analyze", action="store_true", help="仅分析内容结构")
+    parser.add_argument("--topic-brief", action="store_true", help="从 AI 热点源生成选题简报")
+    parser.add_argument("--topic-query", help="热点选题关键词")
+    parser.add_argument("--topic-category", choices=["ai-models", "ai-products", "industry", "paper", "tip"], help="热点分类")
+    parser.add_argument("--topic-limit", type=int, default=10, help="选题数量（默认10）")
+    parser.add_argument("--longform-plan", action="store_true", help="生成公众号长文写作蓝图")
+    parser.add_argument("--research-brief", action="store_true", help="生成深度研究证据包")
+    parser.add_argument("--subject", help="研究对象/文章主题")
     parser.add_argument("--format", choices=["json", "text"], default="text", help="输出格式")
 
     args = parser.parse_args()
@@ -56,9 +66,41 @@ def main():
 
     text = input_path.read_text(encoding="utf-8")
 
+    # 热点选题简报：input 可用任意占位文件，实际从公开热点源拉取
+    if args.topic_brief:
+        from artipen.topic_intelligence import generate_topic_brief
+        brief = generate_topic_brief(
+            query=args.topic_query,
+            category=args.topic_category,
+            limit=args.topic_limit,
+        )
+        if args.format == "json":
+            print(json.dumps({k: v for k, v in brief.items() if k != "markdown"}, ensure_ascii=False, indent=2))
+        else:
+            print(brief["markdown"])
+        return
+
     # 内容分析
     from artipen.content_analyzer import analyze_content, recommend_platform_config
     analysis = analyze_content(text)
+
+    if args.longform_plan:
+        from artipen.longform_writer import build_longform_plan, render_plan_markdown
+        plan = build_longform_plan(text)
+        if args.format == "json":
+            print(json.dumps(plan.to_dict(), ensure_ascii=False, indent=2))
+        else:
+            print(render_plan_markdown(plan))
+        return
+
+    if args.research_brief:
+        from artipen.research_brief import build_research_brief, render_research_brief_markdown
+        brief = build_research_brief(text, subject=args.subject)
+        if args.format == "json":
+            print(json.dumps(brief.to_dict(), ensure_ascii=False, indent=2))
+        else:
+            print(render_research_brief_markdown(brief))
+        return
 
     if args.analyze:
         if args.format == "json":
