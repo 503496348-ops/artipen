@@ -184,3 +184,7 @@ minimal / magazine / tech / handdrawn / corporate / playful / vintage / neon / p
 - **质量控制**: 生成→评分→筛选→重试循环
 - **API服务**: FastAPI RESTful接口，SQLite持久化
 - **批处理**: 并行渲染+自动命名归档
+## 2026-07-02 融合增强
+
+- 妙笔生花新增演示稿内容加厚器：将文章观点扩展为可用于 PPT 的多模块 slide outline。
+
